@@ -13,6 +13,80 @@ export const OVERVIEW = {
     "The Book Generator API allows you to generate books on various topics using different language models. This documentation provides details on how to use the API, including authentication, available endpoints, and code examples.",
 };
 
-export const Tutorial = {
+export const tutorialData = {
   heading: "Tutorial",
+  tutorial: [
+    {
+      step: 1,
+      title: "Obtain an API Key",
+      description:
+        "Generate an API key using the button in the Authentication section above.",
+    },
+    {
+      step: 2,
+      title: "Make a Request",
+      description:
+        "Use your preferred programming language or tool to make a POST request to the /api/generate-book endpoint. Include your API key in the header and the required parameters in the request body.",
+    },
+    {
+      step: 3,
+      title: "Handle the Response",
+      description:
+        "The API will return a response with a job ID. You can use this ID to check the status of your book generation job.",
+    },
+    {
+      step: 4,
+      title: "Retrieve the Generated Book",
+      description:
+        "Once the job is complete, you can retrieve the generated book using the job ID (endpoint to be implemented).",
+    },
+  ],
 };
+
+
+export const endpointsData = {
+
+
+  heading: "Endpoints",
+  tableData: {
+    table_heading: ["PARAMETER", "TYPE", "DESCRIPTION"],
+    table_details: [
+      ["api", "string", "The API provider to use. Options: 'openai' or 'together'"],
+      ["model","string", "The specific model to use (e.g., 'gpt-3.5-turbo', 'gpt-4', 'llama-2-70b')"],
+      ["topic", "string", "The main topic or theme of the book"],
+      ["language", "string", "The language in which the book should be generated"],
+      ["word_count", "integer", "The approximate number of words for the generated book"],
+    ]
+  }
+
+
+};
+
+
+
+export const apiPricingData = {
+  heading: "API Pricing",
+  content:
+    "Our API pricing is based on the model used and the number of tokens processed. Here's a breakdown of the costs:",
+  api_pricing: {
+    table_heading: ["API", "MODEL", "PRICE PER 1K TOKENS"],
+    table_details: [
+      ["OpenAI", "GPT-3.5", "$0.002"],
+      ["OpenAI", "GPT-4", "$0.03"],
+      ["Together AI", "Llama-2-70b","$0.0008"],
+      ["Together AI","Llama-2-13b", "$0.0006"],
+    ],
+  },
+  token_estimation: {
+    title: "Token Estimation",
+    description:
+      "On average, 1 token is approximately 4 characters or 0.75 words. For precise pricing, we recommend using our token calculator tool.",
+  },
+  billing: {
+    title: "Billing",
+    description:
+      "You will only be charged for the tokens used in generating the book. The API tracks token usage and bills accordingly. Detailed usage reports are available in your account dashboard.",
+  },
+};
+
+

@@ -1,13 +1,13 @@
 import React from 'react'
 
 
-const WithSection = ({WrappedComponent}) => {
+const WithSection = ({data, WrappedComponent}) => {
 
   return (
     <section
-      className="border rounded-lg border-white/20 w-full h-fit p-8 mb-8 bg-slate-800 ">
+      className="border rounded-lg border-white/20 w-full h-fit p-8 mb-8 bg-sectionBackground ">
       
-      <WrappedComponent/>
+      <WrappedComponent data={ data} />
     </section>
   )
 }
