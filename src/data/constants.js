@@ -1,3 +1,5 @@
+export const API_KEY_URL = "https://www.uuidtools.com/api/generate/v1"
+
 export const NAV_ITEMS = [
   "Overview",
   "Authentication",
@@ -57,7 +59,14 @@ export const endpointsData = {
       ["language", "string", "The language in which the book should be generated"],
       ["word_count", "integer", "The approximate number of words for the generated book"],
     ]
-  }
+  },
+  response:
+  `
+  {
+    "message": "Book generation started",
+    "status": "processing",
+    "job_id": "unique-job-identifier"
+  }`
 
 
 };
@@ -90,3 +99,53 @@ export const apiPricingData = {
 };
 
 
+export const authenticationData = {
+  heading: "Authentication",
+  description: "To use the API, you need to include your API key in the header of each request:",
+  ApiKeyText: "X-API-Key: YOUR_API_KEY",
+  instruction: "To generate an API key, use the button below:",
+  buttonCTA: "Generate API Key",
+  apiMessage: "Your API Key: ",
+};
+
+
+
+export const codeExamples = {
+  heading: "Code Examples",
+  python: {
+    title: "Python",
+    code: 
+      `import requests
+
+      API_KEY = "your_api_key_here"
+      API_ENDPOINT = "https://tryBookAI.com/api/generate-book"
+
+      headers = {
+          "Content-Type": "application/json",
+          "X-API-Key": API_KEY
+      }
+
+      data = {
+          "api": "openai",
+          "model": "gpt-3.5-turbo",
+          "topic": "The Future of Artificial Intelligence",
+          "language": "English",
+          "word_count": 5000
+      }
+
+      response = requests.post(API_ENDPOINT, json=data, headers=headers)
+
+      if response.status_code == 200:
+          result = response.json()
+          print(f"Book generation started. Job ID: {result['job_id']}")
+      else:
+          print(f"Error: {response.status_code} - {response.text}")
+      `
+  },
+  javascript: {
+    title: 'JavaScript (Node.js)',
+    code:
+      "change me incoorect"
+  }
+
+}

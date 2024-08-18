@@ -1,16 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Header from './Header'
 
 
 import WithSection from './WithSection'
 import SectionHeading from './ui/SectionHeading'
 import SectionText from './ui/SectionText'
-import { apiPricingData, endpointsData, OVERVIEW, tutorialData } from '../data/constants'
-import CustomButton from './ui/Button'
+import { API_KEY_URL, apiPricingData, authenticationData, codeExamples, endpointsData, OVERVIEW, tutorialData } from '../data/constants'
+
 import SectionSubHeading2 from './ui/SectionSubHeading2'
 import SectionSubHeading from './ui/SectionSubheading'
 
 import Table from './ui/Table'
+import Code from './ui/Code'
+import CustomButton from './ui/Button'
 
 
 const Overview = () => {
@@ -26,14 +28,22 @@ const Overview = () => {
 }
 
 
-const Authentication = () => {
+const Authentication = ({ data }) => {
+  
+  const [userApi, setUserApi] = useState("");
+
+  const fetchUserApi = () => {
+    fetch(API_KEY_URL).then(response => response.json()).then(data =>{ setUserApi(data[0])});
+  }
 
   return (
     <>
-      <SectionHeading heading={'Authentication'} />
-      <SectionText content={"To use the API, you need to include your API key in the header of each request:"} />
-      <SectionText content={"To generate an API key, use the button below:"} />
-      <CustomButton text={ "Generate API Key"}/>
+      <SectionHeading heading={data.heading} />
+      <SectionText content={data.description} />
+      <Code code={data.ApiKeyText }/>
+      <SectionText content={data.instruction} />
+      <CustomButton text={data.buttonCTA} handleClick={fetchUserApi} />
+      <div className="mt-4 p-4 border rounded text-text-light dark:text-text border-border-light  dark:border-border break-words">{ data.apiMessage }<strong>{ userApi}</strong></div>
     </>
   )
 }
@@ -47,9 +57,11 @@ const Endpoints = ({ data }) => {
       <SectionSubHeading heading={'Generate Book'}/>
 
       <p className="h-fit"><span className="rounded py-1 px-2 mr-2 bg-accentColor text-backgroundColor">POST</span><span className="rounded py-2 px-4 mb-4  bg-primaryColor text-textColor">/api/generate-book</span></p>
-      <SectionSubHeading2 heading={'Request Body'}/>
+      <SectionSubHeading2 heading={'Request Body'} />
+      
       <Table tableData={data.tableData} />
       <SectionSubHeading2 heading={'Response'} />
+      <Code code={data.response} />
       
       </>
   )
@@ -68,15 +80,22 @@ const Tutorial = () => {
             <SectionText content={step.description} />
           </>
         })
-      }
-
-      
+      }     
     </>
     
   )
-
 }
 
+const CodeExamples = ({data}) => {
+  return <>
+    <SectionHeading heading={data.heading} />
+    <SectionSubHeading heading={data.python.title} />
+    <Code code={data.python.code} />
+
+    <SectionSubHeading heading={data.javascript.title} />
+    <Code code={data.javascript.code} />
+    </>
+}
 
 const ApiPricing = ({ data }) => {
   // console.log(data)
@@ -100,19 +119,23 @@ const Pricing = () => {
 
 
   return (
-    <div className=" flex flex-col w-full h-fit min-h-vh bg-backgroundColor">
+    <div className=" flex flex-col w-full h-fit min-h-dvh bg-background-light dark:bg-backgroundColor">
       <Header />
-      <main className='mx-8 py-8 w-full min-h-48 h-fit' id="main_content">
-        <WithSection WrappedComponent={Overview} />
+      <main className='px-8 py-8 w-full min-h-48 h-fit' id="main_content">
+
+        <WithSection WrappedComponent={Overview} /> 
         
-        
-        <WithSection WrappedComponent={Authentication} />
+        <WithSection data={ authenticationData} WrappedComponent={Authentication} />
         
         <WithSection data={ endpointsData} WrappedComponent={Endpoints} />
 
         <WithSection WrappedComponent={Tutorial} />
 
-        <WithSection data={apiPricingData} WrappedComponent={ApiPricing}/>
+        <WithSection data={codeExamples} WrappedComponent={CodeExamples} /> 
+
+        <WithSection data={apiPricingData} WrappedComponent={ApiPricing} /> 
+        
+
         
         
       </main>
