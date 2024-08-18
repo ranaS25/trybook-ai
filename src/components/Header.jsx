@@ -13,16 +13,19 @@ const Header = () => {
 
   return (
     <>
-    <header className="w-full flex justify-center py-12 bg-primaryColor text-4xl  font-bold text-center text-white">Book Generator API</header>
+    <header className="w-full flex justify-center py-12 bg-primary text-4xl  font-bold text-center text-white">Book Generator API</header>
       <nav className="bg-sectionBackground-light dark:bg-sectionBackground w-full">
-        <ul className='flex flex-col md:flex-row gap-5 mx-auto justify-center py-5 font-semibold text-text-light dark:text-textColor'>
+        
+        
+        
+        <ul className='flex flex-col lg:flex-row gap-5 mx-auto justify-center py-5  text-text-light dark:text-text uppercase' >
 
           {
             NAV_ITEMS.map((item, index) => {
-              return <li key={ index} className=" text-center"><a href={`#${item}` } className="hover:text-blue-500 cursor-pointer">{item.toUpperCase()}</a></li>
+              return <li key={ index} className=" text-center"><a href={`#${item.id}`}  className="font-medium hover:text-primary-light transition-colors  hover:dark:text-primary cursor-pointer">{item.heading}</a></li>
             })
           }
-          <li className=" text-center"><ToggleButton darkMode={darkMode} handleChange={handleDarkModeChange}/></li>
+          <li className=" text-center font-inter font-medium hover:text-primary-light dark:hover:text-primary"><ToggleButton darkMode={darkMode} handleChange={handleDarkModeChange}/></li>
         </ul>
     </nav>
     </>

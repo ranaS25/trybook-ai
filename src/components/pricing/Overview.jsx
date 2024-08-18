@@ -1,15 +1,14 @@
-import React from 'react'
-import SectionHeading from '../ui/SectionHeading'
-import SectionText from '../ui/SectionText'
+import SectionHeading from "../ui/SectionHeading";
+import SectionText from "../ui/SectionText";
 
-const Overview = (props) => {
-  const {heading, description} = props
+const Overview = ({ data}) => {
+
   return (
     <>
-      <SectionHeading heading={heading} />
-      <SectionText content={description} />
+      <SectionHeading  heading={data.heading} />
+      <SectionText content={data.description} />
     </>
   )
 }
+export default Overview;
 
-export default Overview

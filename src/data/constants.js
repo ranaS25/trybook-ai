@@ -1,15 +1,33 @@
 export const API_KEY_URL = "https://www.uuidtools.com/api/generate/v1"
 
 export const NAV_ITEMS = [
-  "Overview",
-  "Authentication",
-  "Endpoints",
-  "Tutorial",
-  "Code Examples",
-  "Pricing",
+  {
+    id: "Overview",
+    heading: "Overview",
+  },
+  {
+    id: "Authentication",
+    heading: "Authentication",
+  },
+  {
+    id: "Endpoints",
+    heading: "Endpoints",
+  },
+  {
+    id: "Tutorial",
+    heading: "Tutorial",
+  },
+  {
+    id: "CodeExamples",
+    heading: "Code Examples",
+  },
+  {
+    id: "Pricing",
+    heading: "Pricing",
+  },
 ];
 
-export const OVERVIEW = {
+export const OverviewData = {
   heading: "Overview",
   description:
     "The Book Generator API allows you to generate books on various topics using different language models. This documentation provides details on how to use the API, including authentication, available endpoints, and code examples.",
@@ -145,7 +163,33 @@ export const codeExamples = {
   javascript: {
     title: 'JavaScript (Node.js)',
     code:
-      "change me incoorect"
+      `
+const axios = require('axios');
+
+const API_KEY = 'your_api_key_here';
+const API_ENDPOINT = 'https://tryBookAI.com/api/generate-book';
+
+const headers = {
+    'Content-Type': 'application/json',
+    'X-API-Key': API_KEY
+};
+
+const data = {
+    api: 'openai',
+    model: 'gpt-3.5-turbo',
+    topic: 'The Future of Artificial Intelligence',
+    language: 'English',
+    word_count: 5000
+};
+
+axios.post(API_ENDPOINT, data, { headers })
+    .then(response => {
+        console.log(\`Book generation started. Job ID: \${response.data.job_id}\`);
+    })
+    .catch(error => {
+        console.error('Error:', error.response ? error.response.data : error.message);
+    });
+`
   }
 
 }
